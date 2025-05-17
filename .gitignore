@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+instance/
+.webassets-cache
+
+# Flask
+.env
+.flaskenv
+
+# IDE files
+.vscode/
+.idea/
