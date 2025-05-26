@@ -121,6 +121,7 @@
                 <div class="flash-messages" role="alert">
                     {% for message in messages %}
                     <p class="mb-0">{{message}}</p>
+                
                     {% endfor %}
                 </div>
                 {% endif %}
@@ -156,6 +157,7 @@
             
             <div class="post-content">
                 {{ one_post.content }}
+                <small class="text-muted ml-2">{{one_post.created_at.strftime('%m/%d/%Y %I:%M %p')}}</small>
             </div>
             
             <!-- Comments section -->
@@ -165,6 +167,8 @@
                 {% for row in one_post.comments_post %}
                 <div class="comment-item">
                     <strong>{{row.comment_owner.first_name.title()}}</strong>: {{row.comment}}
+                    <small class="text-muted ml-2">{{row.created_at.strftime('%m/%d/%Y %I:%M %p')}}</small>
+                    
                 </div>
                 {% endfor %}
             </div>

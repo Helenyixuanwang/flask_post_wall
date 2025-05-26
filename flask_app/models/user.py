@@ -12,6 +12,9 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
+        # Add these lines for the new columns
+        self.reset_token = data.get('reset_token')  # Using get() handles NULL values
+        self.reset_token_expires = data.get('reset_token_expires')
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         # [] can represent a currently empty place to store all of the posts that a single User instance has created, as a User creates MANY posts
