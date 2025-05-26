@@ -143,8 +143,8 @@ def forgot_password():
 
 # ADD THIS NEW FUNCTION
 def send_reset_email(email, token):
-  
-    reset_url = request.host_url + f"reset- password/{token}"
+
+    reset_url = request.host_url + f"reset-password/{token}"
     msg = Message(
         subject='Password Reset Request',
         recipients=[email],
