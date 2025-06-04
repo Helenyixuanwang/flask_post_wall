@@ -6,70 +6,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Wall</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        /* Mobile: Stack forms vertically */
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column !important;
+                align-items: center;
+            }
+            
+            .auth-form {
+                width: 90% !important;
+                max-width: 400px;
+                margin-bottom: 2rem;
+            }
+            
+            .auth-form:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        /* Tablet and Desktop: Side by side */
+        @media (min-width: 769px) {
+            .auth-container {
+                justify-content: around;
+            }
+            
+            .auth-form {
+                width: 45%;
+                max-width: 500px;
+            }
+        }
+        
+        /* General improvements */
+        body {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+        }
+        
+        .auth-form {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0;
+            }
+            
+            .auth-form {
+                width: 95% !important;
+                padding: 1.5rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="d-flex justify-content-around">
-        <form action="/register" method="post" class="col-4 p-4 bg-dark text-light">
-            <h2 class="text-primary">Register</h2>
-            {% with messages = get_flashed_messages(category_filter=['register']) %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    <!-- <strong>Flash AHHHHHHH!!!!</strong> -->
-                        {% for message in messages %}
-                        <p>{{message}}</p>
-                        {% endfor %}
+    <div class="container-fluid">
+        <div class="d-flex auth-container">
+            <form action="/register" method="post" class="auth-form p-4 bg-dark text-light">
+                <h2 class="text-primary">Register</h2>
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <!-- <strong>Flash AHHHHHHH!!!!</strong> -->
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" class="form-control">
                 </div>
-                {% endif %}
-            {% endwith %}
-            <div class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="confirm">Confirm Password:</label>
-                <input type="password" name="confirm" class="form-control">
-            </div>
-            <input type="submit" value="Register" class="btn btn-primary">
-        </form>
-        <form action="/login" method="post" class="col-4 p-4 bg-dark text-light">
-            <h2 class="text-success">Login</h2>
-            {% with messages = get_flashed_messages(category_filter=['login']) %}
-                {% if messages %}
-                <div class="alert alert-danger" role="alert">
-                    <!-- <strong>Flash AHHHHHHH!!!!</strong> -->
-                        {% for message in messages %}
-                        <p>{{message}}</p>
-                        {% endfor %}
+                <div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control">
                 </div>
-                {% endif %}
-            {% endwith %}
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control">
-            </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="confirm">Confirm Password:</label>
+                    <input type="password" name="confirm" class="form-control">
+                </div>
+                <input type="submit" value="Register" class="btn btn-primary">
+            </form>
             
-            <input type="submit" value="Login" class="btn btn-success">
-            <!-- Add this line in your login form, typically near the password field or submit button -->
-        <div class="mt-2">
-            <a href="/forgot-password">Forgot Password?</a>
+            <form action="/login" method="post" class="auth-form p-4 bg-dark text-light">
+                <h2 class="text-success">Login</h2>
+                {% with messages = get_flashed_messages(category_filter=['login']) %}
+                    {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <!-- <strong>Flash AHHHHHHH!!!!</strong> -->
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                
+                <input type="submit" value="Login" class="btn btn-success">
+                <!-- Add this line in your login form, typically near the password field or submit button -->
+                <div class="mt-2">
+                    <a href="/forgot-password" class="text-light">Forgot Password?</a>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
 </body>
 </html>
